@@ -121,7 +121,6 @@ export default {
     props:{
       weatherData:Array,
     },
-    
 }
 </script>
 <style lang="scss" scoped>
