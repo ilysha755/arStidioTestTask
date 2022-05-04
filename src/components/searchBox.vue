@@ -13,7 +13,7 @@ export default {
        return{
            weather:'',
            API__KEY :'f10d459d04fcea9aa87124713863823c',
-       }
+         }
    },
    methods:{
     async clickWeather() {
