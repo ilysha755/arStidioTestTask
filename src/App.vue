@@ -23,7 +23,6 @@ data() {
 methods:{
     clickWeather(weatherData){
       this.weatherData.push(weatherData)
-
     }
 },
 
