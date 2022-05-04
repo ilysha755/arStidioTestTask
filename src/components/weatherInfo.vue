@@ -1,11 +1,14 @@
 <template>
-              
-            <div class="weather__info" v-if="typeof weatherData != 'undefiend'">
-                <div class="weather__info_small">
+            <div v-if="weatherData == 0">
+            <p>Найдите погоду</p>
+            </div>
+            <div class="weather__info" v-else>
+
+                <div class="weather__info_small" >
                     <div class="small__title">
                         <div class="small__percent">
-                            <p class="percent">20 C</p>
-                            <p class="percent__desc">Небольшая облачность</p>
+                            <p class="percent">{{Math.floor(weatherData[0].main.temp)}} C</p>
+                            <p class="percent__desc">{{weatherData[0].weather[0].description}}</p>
                         </div>
                         <div class="weather__icon">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +25,7 @@
                     </div>
                     <div class="small__subtitle">
                         <p class="time">Время:21:54</p>
-                        <p class="city">Город: Москва</p>
+                        <p class="city">Город: {{weatherData[0].name}}</p>
                     </div>
                 </div>
                 <div class="weather__info_big">
@@ -110,18 +113,15 @@
                     </div>
                 </div>
             </div>
-              <div  v-else >
-                <p>Найдите погоду</p>
-            </div>
+      
 </template>
 <script>
 export default {
     name:'weather-info',
     props:{
-        weatherData:Array,
+      weatherData:Array,
     },
-
-
+    
 }
 </script>
 <style lang="scss" scoped>

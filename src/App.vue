@@ -3,7 +3,7 @@
     <div class="weather">
   <header-item />
   <search-box :weather="weather" @getWeather="clickWeather" />
-  <weather-info v-bind:weatherData='weatherData' />
+  <weather-info :weatherData='weatherData' />
   </div>
   
 </main>
@@ -18,28 +18,15 @@ data() {
     weatherData: [],
     errors:[],
     weather:'',
-    API__KEY :'f10d459d04fcea9aa87124713863823c'
  }
 },
 methods:{
     clickWeather(weatherData){
       this.weatherData.push(weatherData)
+
     }
 },
-    // watch: {
-    //     weatherData: {
-    //         handler: function(newValue) {
-    //             console.log(newValue)
-                
-    //         },
-    //         deep: true
-    //     }
-    // }
-//     computed: {
-//   weat: function () {
-//     return this.weatherData
-//   }
-// }
+
 }
 </script>
 <style>
