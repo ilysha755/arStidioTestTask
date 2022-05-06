@@ -1,5 +1,5 @@
 <template>
-            <div v-if="weatherData == 0">
+            <div v-if="weatherData == null">
             <p>Найдите погоду</p>
             </div>
             <div class="weather__info" v-else>
@@ -7,8 +7,8 @@
                 <div class="weather__info_small" >
                     <div class="small__title">
                         <div class="small__percent">
-                            <p class="percent">{{Math.floor(weatherData[0].main.temp)}} C</p>
-                            <p class="percent__desc">{{weatherData[0].weather[0].description}}</p>
+                            <p class="percent"> {{Math.floor(weatherData.main.temp)}}C</p>
+                            <p class="percent__desc">{{weatherData.weather[0].description}}</p>
                         </div>
                         <div class="weather__icon">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,12 +25,13 @@
                     </div>
                     <div class="small__subtitle">
                         <p class="time">Время:21:54</p>
-                        <p class="city">Город: {{weatherData[0].name}}</p>
+                        <p class="city">Город: {{weatherData.name}}</p>
                     </div>
                 </div>
                 <div class="weather__info_big">
                     <div class="info__big_items">
                         <div class="info__big_item">
+                            <div class="item__icon-desc">
                             <div class="item__icon">
                             <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_2_133)">
@@ -56,10 +57,15 @@
                                 </defs>
                                 </svg>
                             </div>
-                            <span>Температура</span>
-                            <p>20 - ощущается как 17</p>
+                            <div class="item__desc">
+                             <span>Температура</span>
+                            </div>
+                            </div>
+                           
+                            <p>{{Math.floor(weatherData.main.temp)}} - ощущается как {{Math.floor(weatherData.main.feels_like)}}</p>
                         </div>
                         <div class="info__big_item">
+                            <div class="item__icon-desc">
                             <div class="item__icon">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_2_124)">
@@ -79,10 +85,14 @@
                                 </defs>
                                 </svg>
                             </div>
-                            <span>Температура</span>
-                            <p>20 - ощущается как 17</p>
+                            <div class="item__desc">
+                                <span>Давление</span>
+                            </div>
+                            </div>
+                            <p>{{weatherData.main.pressure}} мм ртутного столба</p>
                         </div>
                         <div class="info__big_item">
+                            <div class="item__icon-desc">
                             <div class="item__icon">
                             <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g opacity="0.88">
@@ -94,20 +104,29 @@
                                 <path d="M15.8443 9.25539C15.7915 9.25536 15.7391 9.26574 15.6903 9.28595C15.6415 9.30615 15.5971 9.33578 15.5598 9.37314C15.5224 9.4105 15.4928 9.45486 15.4726 9.50368C15.4524 9.5525 15.442 9.60482 15.442 9.65766V13.0482C15.442 13.1549 15.4844 13.2572 15.5598 13.3327C15.6353 13.4081 15.7376 13.4505 15.8443 13.4505C15.951 13.4505 16.0533 13.4081 16.1287 13.3327C16.2042 13.2572 16.2466 13.1549 16.2466 13.0482V9.65789C16.2466 9.60504 16.2362 9.55271 16.216 9.50387C16.1958 9.45504 16.1662 9.41067 16.1288 9.37329C16.0915 9.33591 16.0471 9.30626 15.9983 9.28603C15.9495 9.2658 15.8971 9.25539 15.8443 9.25539Z" fill="#BFFDFF"/>
                                 <path d="M20.183 9.25539C20.1302 9.25536 20.0779 9.26574 20.0291 9.28595C19.9802 9.30615 19.9359 9.33578 19.8985 9.37314C19.8612 9.4105 19.8315 9.45486 19.8113 9.50368C19.7911 9.5525 19.7807 9.60482 19.7808 9.65766V13.0482C19.7808 13.1549 19.8232 13.2572 19.8986 13.3327C19.974 13.4081 20.0764 13.4505 20.183 13.4505C20.2897 13.4505 20.3921 13.4081 20.4675 13.3327C20.5429 13.2572 20.5853 13.1549 20.5853 13.0482V9.65789C20.5853 9.60504 20.575 9.55271 20.5548 9.50387C20.5346 9.45504 20.5049 9.41067 20.4676 9.37329C20.4302 9.33591 20.3859 9.30626 20.337 9.28603C20.2882 9.2658 20.2359 9.25539 20.183 9.25539Z" fill="#BFFDFF"/>
                                 </g>
-                                </svg>   
-                            </div>                             
-                            <span>Температура</span>
+                                </svg> 
+                                 
+                            </div>   
+                            <div class="item__desc">
+                                 <span>Осадки</span>
+                            </div>
+                            </div>                          
+                           
                             <p>20 - ощущается как 17</p>
                         </div>
                         <div class="info__big_item">
+                            <div class="item__icon-desc">
                             <div class="item__icon">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.087 2.6087C13.9291 2.6087 12.1739 4.36436 12.1739 6.52175C12.1739 6.76175 12.3683 6.95653 12.6087 6.95653C12.8491 6.95653 13.0435 6.76175 13.0435 6.52175C13.0435 4.84349 14.4091 3.47827 16.087 3.47827C17.7648 3.47827 19.1304 4.84349 19.1304 6.52175C19.1304 8.20001 17.7648 9.56523 16.087 9.56523H0.434783C0.194783 9.56523 0 9.76001 0 10C0 10.24 0.194783 10.4348 0.434783 10.4348H16.087C18.2448 10.4348 20 8.67914 20 6.52175C20 4.36436 18.2448 2.6087 16.087 2.6087Z" fill="#007AFF"/>
                                 <path d="M0.434783 7.82609H7.82609C9.50435 7.82609 10.8696 6.46087 10.8696 4.78261C10.8696 3.10435 9.50435 1.73914 7.82609 1.73914C6.14783 1.73914 4.78261 3.10435 4.78261 4.78261C4.78261 5.02261 4.97739 5.2174 5.21739 5.2174C5.45739 5.2174 5.65217 5.02261 5.65217 4.78261C5.65217 3.58392 6.62739 2.6087 7.82609 2.6087C9.02478 2.6087 10 3.58392 10 4.78261C10 5.98131 9.02478 6.95653 7.82609 6.95653H0.434783C0.194783 6.95653 0 7.15131 0 7.39131C0 7.63131 0.194783 7.82609 0.434783 7.82609Z" fill="#007AFF"/>
                                 <path d="M15.2174 17.3913C14.0187 17.3913 13.0435 16.4161 13.0435 15.2174C13.0435 14.9774 12.8491 14.7826 12.6087 14.7826C12.3683 14.7826 12.1739 14.9774 12.1739 15.2174C12.1739 16.8957 13.5396 18.2609 15.2174 18.2609C16.8952 18.2609 18.2609 16.8957 18.2609 15.2174C18.2609 13.5391 16.8952 12.1739 15.2174 12.1739H0.434783C0.194783 12.1739 0 12.3687 0 12.6087C0 12.8487 0.194783 13.0435 0.434783 13.0435H15.2174C16.4161 13.0435 17.3913 14.0187 17.3913 15.2174C17.3913 16.4161 16.4161 17.3913 15.2174 17.3913Z" fill="#007AFF"/>
                                 </svg>          
-                            </div>                      
-                            <span>Температура</span>
+                            </div>
+                            <div class="item__desc">                   
+                            <span>Ветер</span>
+                            </div>
+                            </div>
                             <p>20 - ощущается как 17</p>
                         </div>
                     </div>
@@ -119,8 +138,11 @@
 export default {
     name:'weather-info',
     props:{
-      weatherData:Array,
-    },
+        weatherData:{
+            type:Object,
+        },
+    }
+    
 }
 </script>
 <style lang="scss" scoped>
@@ -176,6 +198,10 @@ export default {
 .info__big_items {
     
 }
+.item__icon-desc{
+    display: flex;
+    align-items: center;
+}
 .item__icon{
     background: #ffffff;
     box-shadow:  20px 20px 60px #d9d9d9,-20px -20px 60px #ffffff;
@@ -189,11 +215,19 @@ export default {
     margin-right: 20px;
 }
 .info__big_item {
+    max-width: 420px; 
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 20px;
     span,p{
         display: block;
+    }
+    span{
+        margin-right: 20px;
+    }
+    p{
+        
     }
     svg{
         width: 36px;

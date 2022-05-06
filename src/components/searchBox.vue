@@ -1,14 +1,13 @@
 <template>
-                <div class="weather__search">
-                <input type="text" placeholder="Найти погоду" v-model="weather" @keyup.enter="clickWeather" >
-                <button @click="clickWeather">Найти погоду</button>
+                <div class="weather__search" >
+                <input type="text" placeholder="Найти погоду" v-model="weather" @keyup.enter="getWeather" >
+                <button @click="getWeather">Найти погоду</button>
             </div>
 </template>
 <script>
 import axios from 'axios'
 export default {
    name:'search-box' ,
-
    data(){
        return{
            weather:'',
@@ -16,18 +15,15 @@ export default {
          }
    },
    methods:{
-    async clickWeather() {
-    axios.get('https://api.openweathermap.org/data/2.5/weather?q='+ this.weather +'&appid='+ this.API__KEY +'&units=metric&lang=ru')
-    .then(response => {
-    this.weatherData = response.data
-    this.$emit('getWeather', this.weatherData)
-    console.log(response.data)
-    })
-    .catch(e => {
-      console.log(e)
-    })
-    this.weather=""
-  },
+       getWeather(){
+           axios.get('https://api.openweathermap.org/data/2.5/weather?q='+ this.weather +'&appid='+ this.API__KEY +'&units=metric&lang=ru')
+           .then(response => {
+            this.weatherData = response.data
+            this.$emit('weatherClick', this.weatherData)
+           console.log(this.weatherData)
+            })
+            this.weather=''
+       }
    },
 }
 </script>
@@ -41,6 +37,10 @@ export default {
         height: 45px;
         border: none;
         background-color: #ededed;
+         border-radius:20px 0px 0px 0px;
+        &::placeholder{
+            padding-left: 30px;
+        }
     }
     button{
         max-width: 150px;
