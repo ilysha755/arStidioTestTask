@@ -2,8 +2,8 @@
   <main>
     <div class="weather">
   <header-item />
-  <search-box :weather="weather" @getWeather="clickWeather" />
-  <weather-info :weatherData='weatherData' />
+  <search-box :weather="weather" @weatherClick="getWeather"/>
+  <weather-info  :weatherData="weatherData"/>
   </div>
   
 </main>
@@ -14,16 +14,15 @@
 export default{
 
 data() {
- return { 
-    weatherData: [],
-    errors:[],
+ return {
+    weatherData:null,
     weather:'',
  }
 },
 methods:{
-    clickWeather(weatherData){
-      this.weatherData.push(weatherData)
-    }
+  getWeather(weatherData) {
+    this.weatherData = weatherData
+  }
 },
 
 }
