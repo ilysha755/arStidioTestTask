@@ -7,7 +7,7 @@
                 <div class="weather__info_small" >
                     <div class="small__title">
                         <div class="small__percent">
-                            <p class="percent"> {{Math.floor(weatherData.main.temp)}}C</p>
+                            <p class="percent"> {{Math.floor(weatherData.main.temp)}} C&deg;</p>
                             <p class="percent__desc">{{weatherData.weather[0].description}}</p>
                         </div>
                         <div class="weather__icon">
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="small__subtitle">
-                        <p class="time">Время:21:54</p>
+                        <p class="time">Время:{{time}}</p>
                         <p class="city">Город: {{weatherData.name}}</p>
                     </div>
                 </div>
@@ -141,8 +141,18 @@ export default {
         weatherData:{
             type:Object,
         },
-    }
-    
+         data: () => ({
+          time: ''
+        }),
+    },
+     methods: {
+          showTime: function () {
+            return new Date().toLocaleTimeString().slice(0,-3);
+          }
+        },
+     mounted: function () {
+          this.time = this.showTime();
+        },
 }
 </script>
 <style lang="scss" scoped>
@@ -180,6 +190,7 @@ export default {
 }
 .percent {
     font-size: 45px;
+    margin-bottom: 10px;
 }
 .percent__desc {
 }

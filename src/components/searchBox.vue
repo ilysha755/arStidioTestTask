@@ -37,16 +37,20 @@ export default {
         height: 45px;
         border: none;
         background-color: #ededed;
-         border-radius:20px 0px 0px 0px;
-        &::placeholder{
-            padding-left: 30px;
-        }
+        padding-left:30px;
+        border-radius:20px 0px 0px 0px;
+       
     }
     button{
         max-width: 150px;
         width: 100%;
         border: none;
         border-radius:0px 0px 20px 0px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover{
+            background-color: #cccbcb;
+        }
     }
 }
 </style>
