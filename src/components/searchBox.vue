@@ -20,7 +20,6 @@ export default {
            .then(response => {
             this.weatherData = response.data
             this.$emit('weatherClick', this.weatherData)
-           console.log(this.weatherData)
             })
             this.weather=''
        }
@@ -32,6 +31,7 @@ export default {
     width: 100%;
     display: flex;
     margin-top: 50px;
+    
     input{
         width: 100%;
         height: 45px;
