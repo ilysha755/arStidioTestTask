@@ -1,4 +1,4 @@
-# DigitalMediaTestTask
+# arStidioTestTask
 Требуется создать приложение для поиска погоды с использованием VUE 3
 ## Project setup
 ```
